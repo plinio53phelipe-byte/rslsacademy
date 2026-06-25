@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-page="index">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSL Academy — Dynamic Immersive</title>
+  <meta name="description" content="Aprenda inglês com o método Dynamic Immersive da RSL Academy. Aulas ao vivo, ativas e imersivas de segunda a quinta-feira em 3 horários.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:    #FF5500;
+      --orange-h:  #FF6B1A;
+      --orange-bg: #FFF4EF;
+      --orange-bd: #FFD5C2;
+      --black:     #0D0D0D;
+      --dark:      #1A1A1A;
+      --text:      #222222;
+      --muted:     #888888;
+      --light:     #EEE9E2;
+      --white:     #FAF8F4;
+      --border:    #E2DDD6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 48px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      display: flex; align-items: center; gap: 11px;
+      text-decoration: none;
+    }
+    .logo-icon-wrap {
+      width: 38px; height: 38px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .logo-icon-img {
+      width: 68%;
+      display: block;
+      filter: invert(1);
+      mix-blend-mode: screen;
+    }
+    .logo-text {
+      font-size: 17px; font-weight: 700;
+      color: var(--black); letter-spacing: -.3px;
+    }
+    .logo-text span { color: var(--orange); }
+    .nav-cta {
+      background: var(--orange); color: var(--white);
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      padding: 10px 22px; border: none; border-radius: 100px;
+      cursor: pointer; text-decoration: none;
+      transition: background .18s, transform .12s;
+    }
+    .nav-cta:hover { background: var(--orange-h); transform: scale(1.03); }
+    .nav-cta:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
+    }
+
+    /* ── HERO ── */
+    .hero-section {
+      position: relative;
+      padding-top: 68px;
+      overflow: hidden;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 48px 48px;
+      display: flex;
+      justify-content: flex-end;
+      min-height: calc(100vh - 68px - 120px);
+      align-items: center;
+    }
+
+    /* ── HERO LEFT ── */
+    .hero-left {
+      width: 52%;
+      max-width: 560px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange-bg); border: 1px solid var(--orange-bd);
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 13px; font-weight: 600; color: var(--orange);
+      margin-bottom: 32px;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--orange);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:.35; transform:scale(.65); }
+    }
+    .hero-left h1 {
+      font-size: clamp(38px, 4.2vw, 62px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -2.5px;
+      color: var(--black);
+      margin-bottom: 22px;
+    }
+    .hero-left h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: #5C5C5C;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 420px;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--orange); color: var(--white);
+      font-family: inherit; font-size: 15px; font-weight: 700;
+      padding: 16px 30px; border: none; border-radius: 100px;
+      cursor: pointer; text-decoration: none;
+      transition: background .18s, transform .12s, box-shadow .2s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover {
+      background: var(--orange-h);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(255,85,0,.28);
+    }
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
+    }
+    .btn-secondary {
+      font-size: 14px; font-weight: 600;
+      color: var(--muted); text-decoration: none;
+      transition: color .18s; flex-shrink: 0;
+    }
+    .btn-secondary:hover { color: var(--text); }
+    .btn-secondary:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
+    }
+
+    /* ── HERO LANG LIST ── */
+    .hero-lang-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+    .hero-lang-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 20px;
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 16px; text-decoration: none;
+      transition: border-color .18s, transform .15s, box-shadow .18s;
+    }
+    .hero-lang-row:hover {
+      border-color: var(--orange);
+      transform: translateX(4px);
+      box-shadow: 0 6px 20px rgba(255,85,0,.1);
+    }
+    .hero-lang-code {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--orange-bg); border: 1.5px solid var(--orange-bd);
+      display: grid; place-items: center; flex-shrink: 0;
+      font-size: 11px; font-weight: 800; letter-spacing: 1px; color: var(--orange);
+    }
+    .hero-lang-name { font-size: 18px; font-weight: 700; color: var(--black); flex: 1; }
+    .hero-lang-cta { font-size: 13px; font-weight: 700; color: var(--orange); white-space: nowrap; }
+
+    /* ── HERO VISUAL — absoluto no canto superior esquerdo ── */
+    .hero-visual {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      max-width: 680px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Orbit SVG */
+    .orbit-svg {
+      position: absolute;
+      inset: -15%;
+      width: 130%;
+      height: 130%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Satellite */
+    .satellite-scene {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+    .hero-sat {
+      display: block;
+      width: 100%;
+    }
+
+    /* ── STATS ROW ── */
+    .hero-stats {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .hero-stat {
+      background: #ffffff;
+      border: 1.5px solid #d8d2ca;
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .hero-stat-num {
+      font-size: 40px; font-weight: 800;
+      color: var(--orange); letter-spacing: -2px;
+      line-height: 1; margin-bottom: 8px;
+    }
+    .hero-stat-label {
+      font-size: 13px; font-weight: 500;
+      color: #444444; line-height: 1.35;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-badge .dot { animation: none; }
+    }
+
+    /* ── SHARED ── */
+    .section-tag {
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--orange); margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 800; letter-spacing: -1.5px;
+      color: var(--black); line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-title span { color: var(--orange); }
+    .section-desc {
+      font-size: 17px; color: var(--muted);
+      line-height: 1.65; max-width: 580px;
+    }
+
+    /* ── SELETOR DE IDIOMA ── */
+    .lang-picker-section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .lang-picker-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .lang-picker-left .section-title {
+      margin-bottom: 14px;
+    }
+    .lang-picker-sub {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 280px;
+    }
+    .lang-picker-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .lang-pick-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 28px 24px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, transform .18s, box-shadow .18s;
+    }
+    .lang-pick-card:hover {
+      border-color: var(--orange);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(255,85,0,.1);
+    }
+    .lang-pick-flag svg { display: block; }
+    .lang-pick-name {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--black);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-top: 4px;
+    }
+    .lang-pick-sub {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .lang-pick-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      margin-top: 8px;
+    }
+
+    @media (max-width: 960px) {
+      .lang-picker-section { padding: 64px 24px; }
+      .lang-picker-inner { grid-template-columns: 1fr; gap: 40px; }
+      .lang-picker-sub { max-width: 100%; }
+      .lang-picker-cards { grid-template-columns: 1fr; gap: 12px; }
+      .lang-pick-card { flex-direction: row; align-items: center; gap: 16px; padding: 20px 24px; }
+      .lang-pick-name { font-size: 22px; }
+      .lang-pick-sub { display: none; }
+      .lang-pick-cta { margin-top: 0; }
+    }
+
+    /* ── DOR ── */
+    .pain { background: var(--light); padding: 100px 24px; }
+    .pain-inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+    .pain-header { max-width: 640px; margin-bottom: 56px; }
+    .pain-cards {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 20px; width: 100%;
+    }
+    .pain-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 28px;
+      min-width: 0; display: flex; flex-direction: column;
+    }
+    .pain-card-icon {
+      width: 48px; height: 48px; background: var(--orange-bg);
+      border-radius: 12px; display: grid; place-items: center;
+      margin-bottom: 20px; flex-shrink: 0;
+    }
+    .pain-card-icon svg { width: 22px; height: 22px; }
+    .pain-card h3 { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+    .pain-card p  { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── MÉTODO ── */
+    .method { padding: 100px 24px; position: relative; overflow: hidden; }
+    .method-inner { max-width: 1100px; width: 100%; margin: 0 auto; position: relative; z-index: 1; }
+    .method-traj {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .method-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: end; margin-bottom: 64px;
+    }
+    .method-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .method-card {
+      background: var(--light); border-radius: 20px;
+      padding: 36px 28px; border: 1px solid var(--border);
+      transition: border-color .2s, transform .2s;
+      display: flex; flex-direction: column;
+    }
+    .method-card:hover { border-color: var(--orange-bd); transform: translateY(-3px); }
+    .mission-code {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      color: var(--orange); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .mission-code::before {
+      content: '';
+      display: block; width: 16px; height: 1px; background: var(--orange);
+    }
+    .method-card h3 {
+      font-size: 17px; font-weight: 700; color: var(--black);
+      margin-bottom: 10px; line-height: 1.3;
+    }
+    .method-card p { font-size: 14px; color: var(--muted); line-height: 1.7; flex: 1; }
+
+    /* ── HORÁRIOS ── */
+    .schedule { background: var(--black); padding: 80px 24px; position: relative; overflow: hidden; }
+    .schedule-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+    .schedule-orbit {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; overflow: hidden;
+    }
+    .schedule-header { text-align: center; margin-bottom: 48px; }
+    .schedule-header .section-tag { color: var(--orange); }
+    .schedule-header .section-title { color: var(--white); }
+    .schedule-header .section-desc { color: #aaa; margin: 0 auto; max-width: 480px; }
+    .schedule-cards {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 16px; margin-bottom: 28px;
+      align-items: stretch;
+    }
+    .schedule-card {
+      border: 1px solid rgba(255,255,255,.1); border-radius: 20px;
+      padding: 36px 24px; text-align: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      transition: border-color .2s, background .2s;
+    }
+    .schedule-card:hover { border-color: var(--orange); background: rgba(255,85,0,.05); }
+    .schedule-time {
+      font-size: 52px; font-weight: 800; color: var(--orange);
+      letter-spacing: -2px; line-height: 1; margin-bottom: 10px;
+    }
+    .schedule-label { font-size: 13px; color: #999; letter-spacing: .5px; }
+    .schedule-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,85,0,.1); border: 1px solid rgba(255,85,0,.2);
+      border-radius: 100px; padding: 10px 22px;
+      font-size: 13px; font-weight: 600; color: var(--orange);
+    }
+
+    /* ── DEPOIMENTOS ── */
+    .testimonials { padding: 56px 24px 48px; }
+    .testimonials-header { text-align: center; margin-bottom: 28px; }
+    .testimonials-header .section-desc { margin: 0 auto; }
+    .tcarousel-wrap { max-width: 520px; margin: 0 auto; position: relative; }
+    .tcarousel { overflow: hidden; }
+    .tcarousel-btn-prev,
+    .tcarousel-btn-next {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+    }
+    .tcarousel-btn-prev { left: -52px; }
+    .tcarousel-btn-next { right: -52px; }
+    .tcard-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.22,1,.36,1);
+    }
+    .testimonial-img {
+      max-width: 420px; width: 90%; max-height: 580px;
+      object-fit: contain; border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.10); display: block;
+    }
+    .testimonial-card {
+      min-width: 100%; box-sizing: border-box;
+      display: flex; justify-content: center; align-items: flex-start;
+      background: transparent; border: none;
+      border-radius: 20px; padding: 36px;
+      display: flex; flex-direction: column;
+    }
+    .stars-svg { display: block; margin-bottom: 18px; flex-shrink: 0; }
+    .testimonial-text {
+      font-size: 16px; color: var(--dark);
+      line-height: 1.78; margin-bottom: 28px; flex: 1;
+    }
+    .testimonial-author {
+      display: flex; align-items: center;
+      gap: 12px; flex-shrink: 0;
+    }
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--orange);
+      display: grid; place-items: center;
+      font-size: 16px; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 14px; font-weight: 700; color: var(--black); }
+    .testimonial-detail { font-size: 12px; color: #6B6B6B; margin-top: 3px; }
+    .tcarousel-nav {
+      display: flex; align-items: center;
+      justify-content: center; margin-top: 14px;
+    }
+    .tcarousel-btn {
+      background: none; border: 1.5px solid var(--border); border-radius: 50%;
+      width: 38px; height: 38px; cursor: pointer;
+      display: grid; place-items: center;
+      color: var(--muted); transition: border-color .18s, color .18s;
+    }
+    .tcarousel-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .tcarousel-btn:focus-visible {
+      outline: 2px solid var(--orange); outline-offset: 3px;
+    }
+    .tcarousel-dots { display: flex; gap: 8px; align-items: center; }
+    .tcarousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); border: none; padding: 0;
+      cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .tcarousel-dot.active { background: var(--orange); transform: scale(1.3); }
+
+    /* ── IDIOMAS ── */
+    .lang-section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+    .lang-section-header { text-align: center; margin-bottom: 56px; }
+    .lang-section-header .section-desc { margin: 0 auto; }
+    .lang-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .lang-card {
+      border-radius: 24px; overflow: hidden;
+      position: relative; aspect-ratio: 3/4; cursor: default;
+    }
+    .lang-card-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .lang-card:hover .lang-card-img { transform: scale(1.04); }
+    .lang-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.75) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
+    }
+    .lang-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; }
+    .lang-code {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800; letter-spacing: 2.5px; color: white;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.35);
+      border-radius: 6px; padding: 4px 10px; margin-bottom: 12px;
+    }
+    .lang-card-title { font-size: 26px; font-weight: 800; color: white; letter-spacing: -.5px; margin-bottom: 4px; }
+    .lang-card-sub { font-size: 13px; color: rgba(255,255,255,.7); }
+    .lang-card-en { background: var(--orange); }
+    .lang-card-en .lang-card-overlay { background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 60%); }
+    .lang-card-en-img {
+      width: 100%; height: 100%; object-fit: contain;
+      padding: 20px 20px 44%;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,.25));
+    }
+
+    /* ── PLANOS ── */
+    .pricing { background: var(--light); padding: 100px 24px; }
+    .pricing-inner { max-width: 1100px; margin: 0 auto; }
+    .pricing-header { text-align: center; margin-bottom: 64px; }
+    .pricing-header .section-desc { margin: 0 auto; }
+    .grupo-card {
+      background: var(--white); border: 2px solid var(--orange);
+      border-radius: 24px; padding: 40px 48px;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 32px; margin-bottom: 48px; flex-wrap: wrap;
+    }
+    .grupo-tag {
+      display: inline-block; background: var(--orange); color: white;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; border-radius: 100px;
+      padding: 5px 14px; margin-bottom: 14px;
+    }
+    .grupo-card h3 {
+      font-size: 26px; font-weight: 800; color: var(--black);
+      letter-spacing: -.5px; margin-bottom: 8px;
+    }
+    .grupo-card p { font-size: 15px; color: var(--muted); line-height: 1.55; }
+    .grupo-indicado { font-size: 12px; color: var(--muted); margin-top: 10px; }
+    .grupo-right {
+      text-align: right; flex-shrink: 0;
+      display: flex; flex-direction: column;
+      align-items: flex-end; gap: 0;
+    }
+    .grupo-price { font-size: 44px; font-weight: 800; color: var(--orange); letter-spacing: -2px; line-height: 1; }
+    .grupo-period { font-size: 14px; color: var(--muted); margin-top: 4px; margin-bottom: 4px; }
+    .grupo-fee { font-size: 13px; color: #6B6B6B; margin-bottom: 20px; }
+    .grupo-fee strong { color: var(--text); }
+    .grupo-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange); color: white;
+      font-family: inherit; font-size: 14px; font-weight: 700;
+      padding: 13px 24px; border: none; border-radius: 100px;
+      cursor: pointer; text-decoration: none;
+      transition: background .18s, transform .12s; white-space: nowrap;
+    }
+    .grupo-btn:hover { background: var(--orange-h); transform: translateY(-1px); }
+    .vip-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    }
+    .vip-subtitle { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 24px; }
+    .vip-header-line { flex: 1; height: 1px; background: var(--border); }
+    .vip-title {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .vip-title-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+    .lang-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .lang-tab {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 22px; border-radius: 100px;
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      cursor: pointer; border: 1.5px solid var(--border);
+      background: var(--white); color: var(--muted); transition: all .18s;
+    }
+    .lang-tab.active { background: var(--orange); border-color: var(--orange); color: white; }
+    .lang-tab:hover:not(.active) { border-color: var(--orange-bd); color: var(--text); }
+    .lang-panel { display: none; }
+    .lang-panel.active { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .vip-card {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 20px; padding: 28px 20px; text-align: center; min-width: 0;
+      transition: border-color .2s, transform .18s, box-shadow .18s;
+      display: flex; flex-direction: column;
+    }
+    .vip-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(255,85,0,.1); }
+    .vip-freq { font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+    .vip-price { font-size: 32px; font-weight: 800; color: var(--black); letter-spacing: -1.5px; line-height: 1; margin-bottom: 4px; }
+    .vip-period { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+    .vip-fee { font-size: 11px; color: #6B6B6B; padding-top: 14px; border-top: 1px solid var(--border); margin-bottom: 16px; flex: 1; }
+    .vip-btn {
+      display: block; text-align: center;
+      background: transparent; border: 1.5px solid var(--orange-bd);
+      color: var(--orange); font-family: inherit; font-size: 12px; font-weight: 700;
+      padding: 9px 14px; border-radius: 100px; text-decoration: none; cursor: pointer;
+      transition: background .18s, border-color .18s, color .18s;
+    }
+    .vip-btn:hover { background: var(--orange); border-color: var(--orange); color: white; }
+    .pricing-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 28px; }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: var(--orange); padding: 100px 24px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-rocket {
+      position: absolute; bottom: -20px; right: 6%;
+      width: 200px; pointer-events: none;
+      mix-blend-mode: multiply; opacity: .18;
+      transform: rotate(-8deg);
+    }
+    .cta-section h2 {
+      font-size: clamp(32px,5vw,56px); font-weight: 800;
+      letter-spacing: -2px; color: var(--white);
+      max-width: 700px; margin: 0 auto 16px; line-height: 1.1;
+    }
+    .cta-section p {
+      font-size: 17px; color: rgba(255,255,255,.75);
+      max-width: 480px; margin: 0 auto 44px; line-height: 1.6;
+    }
+    .btn-wpp {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--white); color: var(--orange);
+      font-family: inherit; font-size: 16px; font-weight: 700;
+      padding: 18px 40px; border-radius: 100px; text-decoration: none;
+      transition: transform .15s, box-shadow .2s;
+      box-shadow: 0 8px 30px rgba(0,0,0,.15);
+    }
+    .btn-wpp:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.25); }
+    .btn-wpp svg { width: 22px; height: 22px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 48px 40px; }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .footer-logo-icon {
+      width: 34px; height: 34px; background: var(--orange);
+      border-radius: 50%; display: grid; place-items: center;
+      overflow: hidden;
+    }
+    .footer-logo-icon-img {
+      width: 68%;
+      display: block;
+      filter: invert(1);
+      mix-blend-mode: screen;
+    }
+    .footer-logo-text { font-size: 15px; font-weight: 700; color: var(--white); }
+    .footer-logo-text span { color: var(--orange); }
+    footer p { font-size: 13px; color: #555; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 13px; color: #555; text-decoration: none;
+      transition: color .18s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── SCROLL REVEAL ── */
+    [data-reveal] {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .55s cubic-bezier(.22,1,.36,1),
+                  transform .55s cubic-bezier(.22,1,.36,1);
+      transition-delay: calc(var(--_rd, 0) * 110ms);
+    }
+    [data-reveal].revealed { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { opacity:1; transform:none; transition:none; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+
+      /* Satélite: sai do absoluto e vira bloco no topo */
+      .hero-section { overflow: visible; }
+      .hero-visual {
+        position: relative;
+        top: auto; left: auto;
+        width: 70%;
+        max-width: 380px;
+        margin: 0 auto 0;
+        z-index: 0;
+      }
+      .hero-inner {
+        justify-content: center;
+        padding: 24px 24px 32px;
+        min-height: auto;
+      }
+      .hero-left {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-stats {
+        padding: 0 20px 64px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .hero-stat { padding: 22px 14px; }
+      .hero-stat-num { font-size: 34px; letter-spacing: -1.5px; }
+
+      .pain-cards { grid-template-columns: repeat(2,1fr); }
+      .method-header { grid-template-columns: 1fr; gap: 24px; }
+      .method-grid { grid-template-columns: 1fr; }
+      .schedule-cards { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto 28px; }
+      .lang-cards { grid-template-columns: 1fr; }
+      .grupo-card { flex-direction: column; text-align: center; padding: 32px 28px; }
+      .grupo-right { text-align: center; align-items: center; }
+      .grupo-btn { width: 100%; justify-content: center; }
+      .lang-panel.active { grid-template-columns: repeat(2,1fr); }
+      .cta-rocket { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .tcarousel-btn-prev { left: -18px; }
+      .tcarousel-btn-next { right: -18px; }
+      .hero-visual { width: 85%; }
+      .hero-inner { padding: 16px 20px 24px; }
+      .hero-stats { padding: 0 20px 56px; }
+      .hero-left h1 { max-width: 100%; letter-spacing: -1.5px; }
+      .hero-sub { max-width: 100%; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary { justify-content: center; }
+      .btn-secondary { text-align: center; }
+      .pain-cards { grid-template-columns: 1fr; }
+      .lang-panel.active { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════════ -->
+<nav>
+  <a href="#" class="logo" aria-label="RSL Academy — início">
+    <div class="logo-icon-wrap">
+      <img
+        src="logo-icon.jpg"
+        alt=""
+        aria-hidden="true"
+        class="logo-icon-img"
+      >
+    </div>
+    <span class="logo-text">RSL<span>Academy</span></span>
+  </a>
+  <a
+    href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20as%20aulas!"
+    class="nav-cta"
+    target="_blank"
+    rel="noopener noreferrer"
+    data-wa="nav"
+  >Fale com a gente</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
+<section class="hero-section">
+
+  <!-- Satélite — posicionado absolutamente no canto superior esquerdo -->
+  <div class="hero-visual" aria-hidden="true">
+    <svg class="orbit-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse
+        cx="250" cy="250" rx="210" ry="82"
+        stroke="#FF5500" stroke-width="1.2" opacity="0.13"
+        transform="rotate(-28 250 250)"
+      />
+      <ellipse
+        cx="250" cy="250" rx="165" ry="62"
+        stroke="#FF5500" stroke-width="1" opacity="0.08"
+        transform="rotate(18 250 250)"
+      />
+      <circle class="orbit-particle" id="p1" r="4" fill="#FF5500" opacity="0.55"/>
+      <circle class="orbit-particle" id="p2" r="2.5" fill="#FF5500" opacity="0.32"/>
+    </svg>
+    <div class="satellite-scene">
+      <img
+        src="astronauta-nobg.png"
+        alt="Astronauta representando a imersão no aprendizado de idiomas da RSL Academy"
+        class="hero-sat"
+      >
+    </div>
+  </div>
+
+  <!-- Conteúdo do hero — alinhado à direita -->
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="section-tag">Por onde começar</div>
+
+      <h1 data-hero-title>Conheça os planos<br>na <em>RSL Academy</em></h1>
+
+      <p class="hero-sub" data-hero-subtitle>Escolha o idioma e a gente te conta sobre as turmas, os horários e como começar.</p>
+
+      <div class="hero-lang-list">
+        <a href="ingles.html" class="hero-lang-row">
+          <div class="hero-lang-code">EN</div>
+          <span class="hero-lang-name">Inglês</span>
+          <span class="hero-lang-cta">Quero aprender →</span>
+        </a>
+        <a href="frances.html" class="hero-lang-row">
+          <div class="hero-lang-code">FR</div>
+          <span class="hero-lang-name">Francês</span>
+          <span class="hero-lang-cta">Quero aprender →</span>
+        </a>
+        <a href="italiano.html" class="hero-lang-row">
+          <div class="hero-lang-code">IT</div>
+          <span class="hero-lang-name">Italiano</span>
+          <span class="hero-lang-cta">Quero aprender →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estatísticas abaixo do hero -->
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-count="200" data-prefix="+" data-suffix="" data-stat-value="0">+200</div>
+      <div class="hero-stat-label" data-stat-label="0">Alunos formados</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-count="4" data-prefix="" data-suffix="×" data-stat-value="1">4×</div>
+      <div class="hero-stat-label" data-stat-label="1">Por semana</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-count="3" data-prefix="" data-suffix="" data-stat-value="2">3</div>
+      <div class="hero-stat-label" data-stat-label="2">Horários por dia</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-count="3" data-prefix="" data-suffix="" data-stat-value="3">3</div>
+      <div class="hero-stat-label" data-stat-label="3">Idiomas</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     O PROBLEMA
+════════════════════════════════════════════════════ -->
+<section class="pain">
+  <div class="pain-inner">
+    <div class="pain-header" data-reveal>
+      <div class="section-tag">O problema</div>
+      <h2 class="section-title">Por que você trava quando precisa falar inglês?</h2>
+      <p class="section-desc">Porque você aprendeu o inglês da gramática. Não o inglês da vida real.</p>
+    </div>
+    <div class="pain-cards">
+
+      <div class="pain-card" data-reveal data-delay="1">
+        <div class="pain-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF5500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+          </svg>
+        </div>
+        <h3>Inglês preso no livro</h3>
+        <p>Você decorou regras e vocabulário, mas quase não praticou como usar o idioma em uma conversa real.</p>
+      </div>
+
+      <div class="pain-card" data-reveal data-delay="2">
+        <div class="pain-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF5500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="2" width="6" height="11" rx="3"/>
+            <path d="M5 10a7 7 0 0014 0"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+            <line x1="8" y1="22" x2="16" y2="22"/>
+          </svg>
+        </div>
+        <h3>Pouca prática de verdade</h3>
+        <p>Sem falar com frequência, o inglês some. Você entende, mas trava na hora de responder.</p>
+      </div>
+
+      <div class="pain-card" data-reveal data-delay="3">
+        <div class="pain-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF5500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 12a9 9 0 109-9 9 9 0 00-6.4 2.6L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+        </div>
+        <h3>Falta de constância</h3>
+        <p>Estudar de vez em quando não cria fluência. O idioma precisa aparecer na sua rotina toda semana.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     MÉTODO
+════════════════════════════════════════════════════ -->
+<section class="method" id="method">
+  <!-- Trajetória sutil no fundo -->
+  <svg class="method-traj" viewBox="0 0 1100 500" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+    <path d="M-50 400 Q200 100 500 250 Q800 400 1150 80"
+      stroke="#FF5500" stroke-width="1" stroke-dasharray="5 12" opacity=".06"/>
+    <circle cx="500" cy="250" r="3" fill="#FF5500" opacity=".12"/>
+    <circle cx="200" cy="155" r="2" fill="#FF5500" opacity=".08"/>
+    <circle cx="850" cy="310" r="2" fill="#FF5500" opacity=".08"/>
+  </svg>
+
+  <div class="method-inner">
+    <div class="method-header" data-reveal>
+      <div>
+        <div class="section-tag">A solução</div>
+        <h2 class="section-title">Método <span>Dynamic<br>Immersive</span></h2>
+      </div>
+      <p class="section-desc">Um ambiente que coloca o idioma na sua rotina com participação ativa — não só ouvindo, mas falando, discutindo e usando de verdade.</p>
+    </div>
+
+    <div class="method-grid">
+      <div class="method-card" data-reveal data-delay="1">
+        <div class="mission-code">MIS-01</div>
+        <h3>Todas as competências, toda semana</h3>
+        <p>Fala, escuta, leitura e escrita trabalhadas de forma integrada, com prática real e contínua.</p>
+      </div>
+      <div class="method-card" data-reveal data-delay="2">
+        <div class="mission-code">MIS-02</div>
+        <h3>Participação ativa sempre</h3>
+        <p>Você não apenas assiste. Você fala, responde, discute e usa o idioma durante a aula.</p>
+      </div>
+      <div class="method-card" data-reveal data-delay="3">
+        <div class="mission-code">MIS-03</div>
+        <h3>Temas novos a cada semana</h3>
+        <p>Tecnologia, cultura, trabalho e cotidiano para praticar o inglês que aparece na vida real.</p>
+      </div>
+      <div class="method-card" data-reveal data-delay="4">
+        <div class="mission-code">MIS-04</div>
+        <h3>Imersão que cabe na rotina</h3>
+        <p>Quatro dias por semana e três horários disponíveis para você manter constância sem complicação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     HORÁRIOS
+════════════════════════════════════════════════════ -->
+<section class="schedule">
+  <!-- Arco de órbita sutil no fundo escuro -->
+  <svg class="schedule-orbit" viewBox="0 0 1100 500" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+    <ellipse cx="550" cy="520" rx="480" ry="200"
+      stroke="#FF5500" stroke-width="1" stroke-dasharray="6 16" opacity=".08"/>
+    <circle cx="80" cy="390" r="2" fill="#FF5500" opacity=".15"/>
+    <circle cx="1020" cy="150" r="2" fill="#FF5500" opacity=".15"/>
+  </svg>
+
+  <div class="schedule-inner">
+    <div class="schedule-header" data-reveal>
+      <div class="section-tag">Grade horária</div>
+      <h2 class="section-title">Escolha o horário<br>que encaixa no seu dia</h2>
+      <p class="section-desc">3 opções de horário de segunda a quinta-feira. Você adapta a aula à sua rotina — não o contrário.</p>
+    </div>
+
+    <div class="schedule-cards">
+      <div class="schedule-card" data-reveal data-delay="1">
+        <div class="schedule-time">11h</div>
+        <div class="schedule-label">Turma da manhã</div>
+      </div>
+      <div class="schedule-card" data-reveal data-delay="2">
+        <div class="schedule-time">17h</div>
+        <div class="schedule-label">Turma da tarde</div>
+      </div>
+      <div class="schedule-card" data-reveal data-delay="3">
+        <div class="schedule-time">20h</div>
+        <div class="schedule-label">Turma da noite</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <div class="schedule-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <path d="M8 2v4M16 2v4M3 10h18"/>
+        </svg>
+        Segunda a quinta-feira · Flexibilidade entre horários
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     DEPOIMENTOS
+════════════════════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="testimonials-header" data-reveal>
+    <div class="section-tag">Quem já voou</div>
+    <h2 class="section-title">O que os alunos dizem</h2>
+    <p class="section-desc">Alunos no Brasil, América do Norte e Europa.</p>
+  </div>
+
+  <div class="tcarousel-wrap" data-reveal>
+    <button class="tcarousel-btn tcarousel-btn-prev" id="tPrev" aria-label="Depoimento anterior">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="tcarousel-btn tcarousel-btn-next" id="tNext" aria-label="Próximo depoimento">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="tcarousel">
+      <div class="tcard-track" id="tcardTrack">
+
+        <div class="testimonial-card">
+          <img src="3995f8f0-e057-4e9b-a09a-2a7c5aca4ec0.jpg" alt="Depoimento de aluna RSL Academy" class="testimonial-img">
+        </div>
+
+        <div class="testimonial-card">
+          <svg class="stars-svg" width="88" height="14" viewBox="0 0 88 14" fill="none" aria-label="5 estrelas">
+            <path d="M7 1l1.5 4.5H13L9.3 8.2l1.4 4.3L7 10l-3.7 2.5 1.4-4.3L1 5.5h4.5z" fill="#FF5500"/>
+            <path d="M25 1l1.5 4.5H31l-3.7 2.7 1.4 4.3L25 10l-3.7 2.5 1.4-4.3L19 5.5h4.5z" fill="#FF5500"/>
+            <path d="M43 1l1.5 4.5H49l-3.7 2.7 1.4 4.3L43 10l-3.7 2.5 1.4-4.3L37 5.5h4.5z" fill="#FF5500"/>
+            <path d="M61 1l1.5 4.5H67l-3.7 2.7 1.4 4.3L61 10l-3.7 2.5 1.4-4.3L55 5.5h4.5z" fill="#FF5500"/>
+            <path d="M79 1l1.5 4.5H85l-3.7 2.7 1.4 4.3L79 10l-3.7 2.5 1.4-4.3L73 5.5h4.5z" fill="#FF5500"/>
+          </svg>
+          <img src="acc7f50e-4f7f-4744-be2d-a2ba0e4556be.jpg" alt="Depoimento de aluna RSL Academy" class="testimonial-img">
+        </div>
+
+        <div class="testimonial-card">
+          <img src="85c00a38-c5a5-41df-9dc3-d04150dc3f1a.jpg" alt="Depoimento Mateus RSL Academy" class="testimonial-img">
+        </div>
+
+        <div class="testimonial-card">
+          <img src="79047c74-45f8-439d-9d23-ea87305bffb1.jpg" alt="Depoimento de aluna RSL Academy" class="testimonial-img">
+        </div>
+
+        <div class="testimonial-card">
+          <img src="c604be5a-ee2b-4666-82d7-e50cb73bce0c.jpg" alt="Depoimento de aluna RSL Academy" class="testimonial-img">
+        </div>
+
+        <div class="testimonial-card">
+          <img src="b4a3ae02-5695-4a16-b468-9bf1e1b60076.jpg" alt="Depoimento de aluna RSL Academy" class="testimonial-img">
+        </div>
+
+        <div class="testimonial-card">
+          <img src="762166a1-08db-481d-820a-0fdbfccba7e2.jpg" alt="Depoimento de aluno RSL Academy" class="testimonial-img">
+        </div>
+
+      </div>
+    </div>
+    <div class="tcarousel-nav">
+      <div class="tcarousel-dots" id="tDots" role="tablist" aria-label="Navegar depoimentos"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PLANOS
+════════════════════════════════════════════════════ -->
+<section class="pricing" id="planos">
+  <div class="pricing-inner">
+    <div class="pricing-header" data-reveal>
+      <div class="section-tag">Planos</div>
+      <h2 class="section-title">Escolha como quer aprender</h2>
+      <p class="section-desc">Aulas em grupo ou individuais — na frequência que encaixa na sua semana.</p>
+    </div>
+
+    <div class="grupo-card" data-reveal data-delay="1">
+      <div class="grupo-left">
+        <div class="grupo-tag">Grupos · Inglês</div>
+        <h3>Aulas em grupo</h3>
+        <p>Aprenda em turma ativa, interagindo com outros alunos em situações reais. Disponível em 3 horários por dia, de segunda a quinta-feira.</p>
+        <p class="grupo-indicado">Frequência: 4× por semana · Indicado para quem quer aprender em grupo</p>
+      </div>
+      <div class="grupo-right">
+        <div class="grupo-price" data-plan-grupo-price>R$417</div>
+        <div class="grupo-period">/mês</div>
+        <div class="grupo-fee">+ <strong>R$187</strong> taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20entrar%20em%20uma%20turma%20da%20RSL%20Academy!" class="grupo-btn" target="_blank" rel="noopener noreferrer" data-wa="grupo">
+          <span data-plan-grupo-cta>Quero entrar em uma turma</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="vip-header" data-reveal data-delay="2">
+      <div class="vip-header-line"></div>
+      <div class="vip-title">
+        <span class="vip-title-dot"></span>
+        VIP — Aulas individuais
+        <span class="vip-title-dot"></span>
+      </div>
+      <div class="vip-header-line"></div>
+    </div>
+    <p class="vip-subtitle">Atenção exclusiva do professor, no seu ritmo e necessidade. Escolha o idioma e a frequência ideal.</p>
+
+    <div class="lang-tabs">
+      <button class="lang-tab active" onclick="switchLang('en',this)" aria-pressed="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Inglês
+      </button>
+      <button class="lang-tab" onclick="switchLang('fr',this)" aria-pressed="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Francês
+      </button>
+      <button class="lang-tab" onclick="switchLang('it',this)" aria-pressed="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Italiano
+      </button>
+    </div>
+
+    <!-- Inglês VIP -->
+    <div class="lang-panel active" id="panel-en">
+      <div class="vip-card">
+        <div class="vip-freq">2× / semana</div>
+        <div class="vip-price" data-vip-en-price="0">R$577</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20ingl%C3%AAs!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="nav">Quero aulas individuais</a>
+      </div>
+      <div class="vip-card">
+        <div class="vip-freq">3× / semana</div>
+        <div class="vip-price" data-vip-en-price="1">R$837</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20ingl%C3%AAs!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="nav">Quero aulas individuais</a>
+      </div>
+      <div class="vip-card">
+        <div class="vip-freq">4× / semana</div>
+        <div class="vip-price" data-vip-en-price="2">R$1.137</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20ingl%C3%AAs!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="nav">Quero aulas individuais</a>
+      </div>
+      <div class="vip-card">
+        <div class="vip-freq">5× / semana</div>
+        <div class="vip-price" data-vip-en-price="3">R$1.437</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20ingl%C3%AAs!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="nav">Quero aulas individuais</a>
+      </div>
+    </div>
+
+    <!-- Francês VIP -->
+    <div class="lang-panel" id="panel-fr">
+      <div class="vip-card">
+        <div class="vip-freq">2× / semana</div>
+        <div class="vip-price" data-vip-fr-price="0">R$657</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20franc%C3%AAs!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="frances">Quero aulas individuais</a>
+      </div>
+      <div class="vip-card">
+        <div class="vip-freq">3× / semana</div>
+        <div class="vip-price" data-vip-fr-price="1">R$897</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20franc%C3%AAs!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="frances">Quero aulas individuais</a>
+      </div>
+      <div class="vip-card">
+        <div class="vip-freq">4× / semana</div>
+        <div class="vip-price" data-vip-fr-price="2">R$1.157</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20franc%C3%AAs!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="frances">Quero aulas individuais</a>
+      </div>
+      <div class="vip-card">
+        <div class="vip-freq">5× / semana</div>
+        <div class="vip-price" data-vip-fr-price="3">R$1.437</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20franc%C3%AAs!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="frances">Quero aulas individuais</a>
+      </div>
+    </div>
+
+    <!-- Italiano VIP -->
+    <div class="lang-panel" id="panel-it">
+      <div class="vip-card">
+        <div class="vip-freq">2× / semana</div>
+        <div class="vip-price" data-vip-it-price="0">R$657</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20italiano!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="italiano">Quero aulas individuais</a>
+      </div>
+      <div class="vip-card">
+        <div class="vip-freq">3× / semana</div>
+        <div class="vip-price" data-vip-it-price="1">R$897</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20italiano!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="italiano">Quero aulas individuais</a>
+      </div>
+      <div class="vip-card">
+        <div class="vip-freq">4× / semana</div>
+        <div class="vip-price" data-vip-it-price="2">R$1.157</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20italiano!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="italiano">Quero aulas individuais</a>
+      </div>
+      <div class="vip-card">
+        <div class="vip-freq">5× / semana</div>
+        <div class="vip-price" data-vip-it-price="3">R$1.437</div>
+        <div class="vip-period">/mês</div>
+        <div class="vip-fee">+ R$187 taxa única de material</div>
+        <a href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20aulas%20VIP%20de%20italiano!" class="vip-btn" target="_blank" rel="noopener noreferrer" data-wa="italiano">Quero aulas individuais</a>
+      </div>
+    </div>
+
+    <p class="pricing-note">
+      Dúvida sobre qual plano escolher?
+      <a href="https://wa.me/5516997566254?text=Quero%20ajuda%20pra%20escolher%20o%20plano%20certo!" target="_blank" rel="noopener noreferrer" style="color:var(--orange);font-weight:600;">Fala com a gente</a>
+      — a gente te orienta.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════════════ -->
+<section class="cta-section">
+  <img src="rocket.png" alt="" class="cta-rocket" aria-hidden="true" />
+  <div class="cta-inner">
+    <div class="section-tag" data-reveal style="color:rgba(255,255,255,.6);">Próximo passo</div>
+    <h2 data-reveal data-delay="1" data-cta-title>Pronto pra falar inglês de verdade?</h2>
+    <p data-reveal data-delay="2" data-cta-subtitle>Manda uma mensagem. A gente te conta sobre as turmas, horários e como começar — sem enrolação.</p>
+    <a
+      href="https://wa.me/5516997566254?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20as%20aulas%20da%20RSL%20Academy!"
+      class="btn-wpp"
+      data-reveal data-delay="3"
+      target="_blank"
+      rel="noopener noreferrer"
+      data-wa="nav"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.854L0 24l6.304-1.516A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.97 0-3.81-.538-5.39-1.473l-.387-.228-3.742.9.934-3.647-.252-.396A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      </svg>
+      Falar com a RSL Academy
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo" aria-label="RSL Academy">
+      <div class="footer-logo-icon">
+        <img
+          src="logo-icon.jpg"
+          alt=""
+          aria-hidden="true"
+          class="footer-logo-icon-img"
+        >
+      </div>
+      <span class="footer-logo-text">RSL<span>Academy</span></span>
+    </a>
+    <p>Escola de idiomas · Método Dynamic Immersive</p>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/rslacademy" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://wa.me/5516997566254" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+    <p>© 2026 RSL Academy</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════════ -->
+<script src="config-loader.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Órbita do hero ── */
+  (function () {
+    var p1 = document.getElementById('p1');
+    var p2 = document.getElementById('p2');
+    if (!p1 || !p2 || reduced) return;
+
+    /* Parâmetros das órbitas (em coordenadas do viewBox 500×500) */
+    var orbits = [
+      { el: p1, cx: 250, cy: 250, rx: 210, ry: 82,  angle: -28 * Math.PI / 180, dur: 14000, offset: 0     },
+      { el: p2, cx: 250, cy: 250, rx: 165, ry: 62,  angle:  18 * Math.PI / 180, dur: 20000, offset: 7000  }
+    ];
+
+    var startTime = null;
+
+    function tick(ts) {
+      if (!startTime) startTime = ts;
+      var elapsed = ts - startTime;
+
+      orbits.forEach(function (o) {
+        var t = ((elapsed + o.offset) % o.dur) / o.dur;
+        var rad = t * Math.PI * 2;
+        /* Ponto na elipse não rotacionada */
+        var ex = o.rx * Math.cos(rad);
+        var ey = o.ry * Math.sin(rad);
+        /* Aplicar rotação */
+        var cosA = Math.cos(o.angle);
+        var sinA = Math.sin(o.angle);
+        var x = o.cx + ex * cosA - ey * sinA;
+        var y = o.cy + ex * sinA + ey * cosA;
+        o.el.setAttribute('cx', x.toFixed(2));
+        o.el.setAttribute('cy', y.toFixed(2));
+      });
+
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  })();
+
+  /* ── Tabs dos planos ── */
+  window.switchLang = function (lang, btn) {
+    document.querySelectorAll('.lang-panel').forEach(function (p) { p.classList.remove('active'); });
+    document.querySelectorAll('.lang-tab').forEach(function (t) {
+      t.classList.remove('active');
+      t.setAttribute('aria-pressed', 'false');
+    });
+    document.getElementById('panel-' + lang).classList.add('active');
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+  };
+
+  /* ── Carrossel de depoimentos ── */
+  (function () {
+    var track  = document.getElementById('tcardTrack');
+    var dotsEl = document.getElementById('tDots');
+    if (!track || !dotsEl) return;
+
+    var cards = track.children;
+    var total = cards.length;
+    var cur   = 0;
+    var dots  = [];
+    var timer;
+
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('button');
+      d.className = 'tcarousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Depoimento ' + (i + 1));
+      d.setAttribute('role', 'tab');
+      d.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      (function (idx) {
+        d.addEventListener('click', function () { goTo(idx); });
+      })(i);
+      dotsEl.appendChild(d);
+      dots.push(d);
+    }
+
+    function goTo(n) {
+      cur = (n + total) % total;
+      track.style.transform = 'translateX(-' + cur * 100 + '%)';
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('active', i === cur);
+        dot.setAttribute('aria-selected', i === cur ? 'true' : 'false');
+      });
+    }
+
+    document.getElementById('tPrev').addEventListener('click', function () { goTo(cur - 1); });
+    document.getElementById('tNext').addEventListener('click', function () { goTo(cur + 1); });
+
+    function startTimer() {
+      timer = setInterval(function () { goTo(cur + 1); }, 6000);
+    }
+    function stopTimer() { clearInterval(timer); }
+
+    if (!reduced) {
+      startTimer();
+      var wrap = track.closest('.tcarousel-wrap');
+      wrap.addEventListener('mouseenter', stopTimer);
+      wrap.addEventListener('mouseleave', startTimer);
+    }
+  })();
+
+  /* ── Scroll reveal ── */
+  (function () {
+    if (reduced) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          el.style.setProperty('--_rd', el.dataset.delay || 0);
+          el.classList.add('revealed');
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      observer.observe(el);
+    });
+  })();
+
+  /* ── Counter nos stats do hero ── */
+  (function () {
+    if (reduced) return;
+
+    function countUp(el, target, prefix, suffix, dur) {
+      var start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var p    = Math.min((ts - start) / dur, 1);
+        var ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + Math.floor(ease * target) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        document.querySelectorAll('.hero-stat-num[data-count]').forEach(function (el) {
+          countUp(
+            el,
+            parseInt(el.dataset.count, 10),
+            el.dataset.prefix || '',
+            el.dataset.suffix || '',
+            1400
+          );
+        });
+      }, 400);
+    });
+  })();
+
+})();
+</script>
+</body>
+</html>
