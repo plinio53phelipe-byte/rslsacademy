@@ -243,6 +243,73 @@
         <div class="sub-label">CTA Final</div>
         <div class="field"><label>Título</label><input type="text" id="idx_ctaTitle"></div>
         <div class="field"><label>Subtítulo</label><textarea id="idx_ctaSubtitle" rows="2"></textarea></div>
+        <hr class="divider">
+        <div class="sub-label">Seção "O Problema"</div>
+        <div class="field"><label>Título da seção</label><input type="text" id="idx_painTitle"></div>
+        <div class="field"><label>Descrição da seção</label><textarea id="idx_painDesc" rows="2"></textarea></div>
+        <div class="plan-block">
+          <div class="plan-block-title">Card 1</div>
+          <div class="field"><label>Título</label><input type="text" id="idx_pain0_title"></div>
+          <div class="field"><label>Texto</label><textarea id="idx_pain0_desc" rows="2"></textarea></div>
+        </div>
+        <div class="plan-block">
+          <div class="plan-block-title">Card 2</div>
+          <div class="field"><label>Título</label><input type="text" id="idx_pain1_title"></div>
+          <div class="field"><label>Texto</label><textarea id="idx_pain1_desc" rows="2"></textarea></div>
+        </div>
+        <div class="plan-block">
+          <div class="plan-block-title">Card 3</div>
+          <div class="field"><label>Título</label><input type="text" id="idx_pain2_title"></div>
+          <div class="field"><label>Texto</label><textarea id="idx_pain2_desc" rows="2"></textarea></div>
+        </div>
+        <hr class="divider">
+        <div class="sub-label">Seção "Método Dynamic Immersive"</div>
+        <div class="field"><label>Descrição da seção</label><textarea id="idx_methodDesc" rows="2"></textarea></div>
+        <div class="plan-block">
+          <div class="plan-block-title">Card 1</div>
+          <div class="field"><label>Título</label><input type="text" id="idx_method0_title"></div>
+          <div class="field"><label>Texto</label><textarea id="idx_method0_desc" rows="2"></textarea></div>
+        </div>
+        <div class="plan-block">
+          <div class="plan-block-title">Card 2</div>
+          <div class="field"><label>Título</label><input type="text" id="idx_method1_title"></div>
+          <div class="field"><label>Texto</label><textarea id="idx_method1_desc" rows="2"></textarea></div>
+        </div>
+        <div class="plan-block">
+          <div class="plan-block-title">Card 3</div>
+          <div class="field"><label>Título</label><input type="text" id="idx_method2_title"></div>
+          <div class="field"><label>Texto</label><textarea id="idx_method2_desc" rows="2"></textarea></div>
+        </div>
+        <div class="plan-block">
+          <div class="plan-block-title">Card 4</div>
+          <div class="field"><label>Título</label><input type="text" id="idx_method3_title"></div>
+          <div class="field"><label>Texto</label><textarea id="idx_method3_desc" rows="2"></textarea></div>
+        </div>
+        <hr class="divider">
+        <div class="sub-label">Seção "Grade Horária"</div>
+        <div class="field"><label>Título da seção</label><input type="text" id="idx_scheduleTitle"></div>
+        <div class="field"><label>Descrição da seção</label><textarea id="idx_scheduleDesc" rows="2"></textarea></div>
+        <div class="grid-3">
+          <div class="plan-block">
+            <div class="plan-block-title">Horário 1</div>
+            <div class="field"><label>Horário</label><input type="text" id="idx_slot0_time" placeholder="11h"></div>
+            <div class="field"><label>Legenda</label><input type="text" id="idx_slot0_label" placeholder="Turma da manhã"></div>
+          </div>
+          <div class="plan-block">
+            <div class="plan-block-title">Horário 2</div>
+            <div class="field"><label>Horário</label><input type="text" id="idx_slot1_time" placeholder="17h"></div>
+            <div class="field"><label>Legenda</label><input type="text" id="idx_slot1_label" placeholder="Turma da tarde"></div>
+          </div>
+          <div class="plan-block">
+            <div class="plan-block-title">Horário 3</div>
+            <div class="field"><label>Horário</label><input type="text" id="idx_slot2_time" placeholder="20h"></div>
+            <div class="field"><label>Legenda</label><input type="text" id="idx_slot2_label" placeholder="Turma da noite"></div>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="sub-label">Seção "O que os alunos dizem"</div>
+        <div class="field"><label>Título da seção</label><input type="text" id="idx_testimonialsTitle"></div>
+        <div class="field"><label>Descrição</label><input type="text" id="idx_testimonialsDesc"></div>
         <div class="card-footer"><button class="btn btn-save" onclick="save('index')">Salvar Página Principal</button></div>
       </div>
     </div>
@@ -528,6 +595,29 @@ function populate() {
     v(`idx_stat${i}_value`, s.value);
     v(`idx_stat${i}_label`, s.label);
   });
+  // Index — Pain
+  v('idx_painTitle', c.index?.pain?.title);
+  v('idx_painDesc', c.index?.pain?.desc);
+  (c.index?.pain?.cards || []).forEach((card, i) => {
+    v(`idx_pain${i}_title`, card.title);
+    v(`idx_pain${i}_desc`, card.desc);
+  });
+  // Index — Method
+  v('idx_methodDesc', c.index?.method?.desc);
+  (c.index?.method?.cards || []).forEach((card, i) => {
+    v(`idx_method${i}_title`, card.title);
+    v(`idx_method${i}_desc`, card.desc);
+  });
+  // Index — Schedule
+  v('idx_scheduleTitle', c.index?.schedule?.title);
+  v('idx_scheduleDesc', c.index?.schedule?.desc);
+  (c.index?.schedule?.slots || []).forEach((slot, i) => {
+    v(`idx_slot${i}_time`, slot.time);
+    v(`idx_slot${i}_label`, slot.label);
+  });
+  // Index — Testimonials header
+  v('idx_testimonialsTitle', c.index?.testimonialsTitle);
+  v('idx_testimonialsDesc', c.index?.testimonialsDesc);
   // Ingles
   v('en_heroTitle', c.ingles?.heroTitle);
   v('en_heroSubtitle', c.ingles?.heroSubtitle);
@@ -580,7 +670,21 @@ function collect() {
     index: {
       heroTitle: g('idx_heroTitle'), heroSubtitle: g('idx_heroSubtitle'),
       ctaTitle: g('idx_ctaTitle'), ctaSubtitle: g('idx_ctaSubtitle'),
-      stats: [0,1,2,3].map(i => ({ value: g(`idx_stat${i}_value`), label: g(`idx_stat${i}_label`) }))
+      stats: [0,1,2,3].map(i => ({ value: g(`idx_stat${i}_value`), label: g(`idx_stat${i}_label`) })),
+      pain: {
+        title: g('idx_painTitle'), desc: g('idx_painDesc'),
+        cards: [0,1,2].map(i => ({ title: g(`idx_pain${i}_title`), desc: g(`idx_pain${i}_desc`) }))
+      },
+      method: {
+        desc: g('idx_methodDesc'),
+        cards: [0,1,2,3].map(i => ({ title: g(`idx_method${i}_title`), desc: g(`idx_method${i}_desc`) }))
+      },
+      schedule: {
+        title: g('idx_scheduleTitle'), desc: g('idx_scheduleDesc'),
+        slots: [0,1,2].map(i => ({ time: g(`idx_slot${i}_time`), label: g(`idx_slot${i}_label`) }))
+      },
+      testimonialsTitle: g('idx_testimonialsTitle'),
+      testimonialsDesc: g('idx_testimonialsDesc')
     },
     ingles: { heroTitle: g('en_heroTitle'), heroSubtitle: g('en_heroSubtitle'), ctaTitle: g('en_ctaTitle'), ctaSubtitle: g('en_ctaSubtitle'), vips: [0,1,2,3].map(i => ({ name: g(`en_vip${i}_name`), freq: g(`en_vip${i}_freq`), price: g(`en_vip${i}_price`), material: g(`en_vip${i}_material`), ctaLabel: g(`en_vip${i}_cta`) })) },
     frances: { heroTitle: g('fr_heroTitle'), heroSubtitle: g('fr_heroSubtitle'), ctaTitle: g('fr_ctaTitle'), ctaSubtitle: g('fr_ctaSubtitle'), vips: [0,1,2,3].map(i => ({ name: g(`fr_vip${i}_name`), freq: g(`fr_vip${i}_freq`), price: g(`fr_vip${i}_price`), material: g(`fr_vip${i}_material`), ctaLabel: g(`fr_vip${i}_cta`) })) },

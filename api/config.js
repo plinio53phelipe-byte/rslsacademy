@@ -35,7 +35,36 @@ const DEFAULT_CONFIG = {
       { value: '4×', label: 'Por semana' },
       { value: '3', label: 'Horários por dia' },
       { value: '3', label: 'Idiomas' }
-    ]
+    ],
+    pain: {
+      title: 'Por que você trava quando precisa falar inglês?',
+      desc: 'Porque você aprendeu o inglês da gramática. Não o inglês da vida real.',
+      cards: [
+        { title: 'Inglês preso no livro', desc: 'Você decorou regras e vocabulário, mas quase não praticou como usar o idioma em uma conversa real.' },
+        { title: 'Pouca prática de verdade', desc: 'Sem falar com frequência, o inglês some. Você entende, mas trava na hora de responder.' },
+        { title: 'Falta de constância', desc: 'Estudar de vez em quando não cria fluência. O idioma precisa aparecer na sua rotina toda semana.' }
+      ]
+    },
+    method: {
+      desc: 'Um ambiente que coloca o idioma na sua rotina com participação ativa — não só ouvindo, mas falando, discutindo e usando de verdade.',
+      cards: [
+        { title: 'Todas as competências, toda semana', desc: 'Fala, escuta, leitura e escrita trabalhadas de forma integrada, com prática real e contínua.' },
+        { title: 'Participação ativa sempre', desc: 'Você não apenas assiste. Você fala, responde, discute e usa o idioma durante a aula.' },
+        { title: 'Temas novos a cada semana', desc: 'Tecnologia, cultura, trabalho e cotidiano para praticar o inglês que aparece na vida real.' },
+        { title: 'Imersão que cabe na rotina', desc: 'Quatro dias por semana e três horários disponíveis para você manter constância sem complicação.' }
+      ]
+    },
+    schedule: {
+      title: 'Escolha o horário que encaixa no seu dia',
+      desc: '3 opções de horário de segunda a quinta-feira. Você adapta a aula à sua rotina — não o contrário.',
+      slots: [
+        { time: '11h', label: 'Turma da manhã' },
+        { time: '17h', label: 'Turma da tarde' },
+        { time: '20h', label: 'Turma da noite' }
+      ]
+    },
+    testimonialsTitle: 'O que os alunos dizem',
+    testimonialsDesc: 'Alunos no Brasil, América do Norte e Europa.'
   },
   ingles: {
     heroTitle: 'Três horários por dia, de segunda à quinta. Você escolhe o que melhor encaixa na sua rotina.',

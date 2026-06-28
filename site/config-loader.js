@@ -55,7 +55,44 @@
     }
   }
 
-  // Index-specific
+  // Index-specific sections
+  if (page === 'index') {
+    const idx = cfg.index || {};
+
+    // Pain section
+    if (idx.pain) {
+      set('[data-pain-title]', idx.pain.title);
+      set('[data-pain-desc]', idx.pain.desc);
+      (idx.pain.cards || []).forEach((card, i) => {
+        set(`[data-pain-card-title="${i}"]`, card.title);
+        set(`[data-pain-card-desc="${i}"]`, card.desc);
+      });
+    }
+
+    // Method section
+    if (idx.method) {
+      set('[data-method-desc]', idx.method.desc);
+      (idx.method.cards || []).forEach((card, i) => {
+        set(`[data-method-card-title="${i}"]`, card.title);
+        set(`[data-method-card-desc="${i}"]`, card.desc);
+      });
+    }
+
+    // Schedule section
+    if (idx.schedule) {
+      set('[data-schedule-title]', idx.schedule.title);
+      set('[data-schedule-desc]', idx.schedule.desc);
+      (idx.schedule.slots || []).forEach((slot, i) => {
+        set(`[data-schedule-time="${i}"]`, slot.time);
+        set(`[data-schedule-label="${i}"]`, slot.label);
+      });
+    }
+
+    // Testimonials header
+    set('[data-testimonials-title]', idx.testimonialsTitle);
+    set('[data-testimonials-desc]', idx.testimonialsDesc);
+  }
+
   if (page === 'index' && cfg.index?.stats) {
     cfg.index.stats.forEach((s, i) => {
       if (s.value) {
