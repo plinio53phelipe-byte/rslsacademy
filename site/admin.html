@@ -706,11 +706,16 @@ async function save(section) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password, ...updated })
     });
-    if (!res.ok) throw new Error();
+    if (!res.ok) {
+      let msg = 'Erro ao salvar.';
+      try { const d = await res.json(); if (d.error) msg = 'Erro: ' + d.error; } catch {}
+      showToast(msg, 'error');
+      return;
+    }
     cfg = updated;
     showToast('Salvo com sucesso!', 'success');
-  } catch {
-    showToast('Erro ao salvar. Tente novamente.', 'error');
+  } catch (e) {
+    showToast('Erro de rede: ' + e.message, 'error');
   }
 }
 
