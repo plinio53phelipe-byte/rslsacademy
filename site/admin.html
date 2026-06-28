@@ -98,6 +98,9 @@
     .dep-delete { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,.55); border: none; border-radius: 7px; width: 26px; height: 26px; cursor: pointer; display: grid; place-items: center; transition: background .15s; }
     .dep-delete:hover { background: var(--red); }
     .dep-delete svg { width: 12px; height: 12px; fill: white; }
+    .dep-edit { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,.55); border: none; border-radius: 7px; width: 26px; height: 26px; cursor: pointer; display: grid; place-items: center; transition: background .15s; }
+    .dep-edit:hover { background: var(--orange); }
+    .dep-edit svg { width: 12px; height: 12px; stroke: white; fill: none; }
     .dep-empty { text-align: center; padding: 28px; color: var(--muted); font-size: 13px; border: 2px dashed var(--border); border-radius: 12px; margin-bottom: 14px; }
     .upload-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 22px; text-align: center; cursor: pointer; transition: border-color .18s, background .18s; }
     .upload-zone:hover, .upload-zone.drag { border-color: var(--orange); background: #fff5f0; }
@@ -718,12 +721,51 @@ function renderDeps() {
   const deps = cfg.testimonials || [];
   grid.innerHTML = '';
   empty.style.display = deps.length ? 'none' : 'block';
-  deps.forEach(url => {
+  deps.forEach((url, idx) => {
     const d = document.createElement('div');
     d.className = 'dep-item';
-    d.innerHTML = `<img src="${url}" loading="lazy"><button class="dep-delete" onclick="deleteDep('${url}')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>`;
+    d.innerHTML = `
+      <img src="${url}" loading="lazy">
+      <button class="dep-edit" title="Substituir imagem" onclick="replaceDep('${url}', ${idx})">
+        <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </button>
+      <button class="dep-delete" title="Remover" onclick="deleteDep('${url}')">
+        <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>`;
     grid.appendChild(d);
   });
+}
+
+async function replaceDep(oldUrl, idx) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = async () => {
+    if (!input.files.length) return;
+    const file = input.files[0];
+    showToast('Substituindo imagem...', '');
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'x-password': password, 'x-filename': file.name, 'Content-Type': file.type },
+        body: file
+      });
+      const data = await res.json();
+      if (!data.url) throw new Error('upload failed');
+      await fetch('/api/delete-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password, url: oldUrl })
+      });
+      cfg.testimonials[idx] = data.url;
+      await save('testimonials');
+      renderDeps();
+      showToast('Imagem substituída!', 'success');
+    } catch {
+      showToast('Erro ao substituir. Tente novamente.', 'error');
+    }
+  };
+  input.click();
 }
 
 const uploadZone = document.getElementById('uploadZone');
