@@ -1,4 +1,4 @@
-import { put, list } from '@vercel/blob';
+import { put, list, del } from '@vercel/blob';
 
 const CONFIG_KEY = 'rsl-config.json';
 const PASSWORD = process.env.ADMIN_PASSWORD || 'rsl2024admin';
@@ -131,9 +131,10 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Senha incorreta' });
     }
     try {
+      const { blobs } = await list({ prefix: CONFIG_KEY });
+      if (blobs.length) await del(blobs[0].url);
       await put(CONFIG_KEY, JSON.stringify(config), {
         access: 'public',
-        allowOverwrite: true,
         addRandomSuffix: false
       });
       return res.status(200).json({ success: true });
